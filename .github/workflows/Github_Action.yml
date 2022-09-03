@@ -27,16 +27,14 @@ jobs:
        - name: cloning repository
          continue-on-error: true
          run: |
-           git clone https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.GIT_REPO }} kaali
+           git clone https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} kaali
        - name: running kaali-linux server
          timeout-minutes: 350
          continue-on-error: true
          run: |
-           git clone -b aditya https://github.com/GeniusBoi/Genius-Userbot linux
-           cp kaali/Internal linux/Internal
-           cd linux
-           docker build . -t linux
-           docker run linux
+           cd kaali
+           docker build . -t kaali
+           docker run kaali
        - name: loop kaali-linux server
          continue-on-error: true
          run: |
